@@ -23,6 +23,11 @@
 
 }
 
+.search,
+.search-result{
+  width: 361px;
+}
+
 .search{
   border: 1px solid transparent;
   position: relative;
@@ -60,7 +65,14 @@
     top: var(--search-top-spacer);
     background-color: rgba(22, 24, 35, 0.12);
   }
+}
+.search-title {
+  font-size: 1.4rem;
+  padding: 5px 12px;
+  color: rgba(22,24,35, 0.5);
+}
 
+.search-result {
 }
 
 
