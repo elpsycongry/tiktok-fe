@@ -2,12 +2,20 @@ import classNames from 'classnames/bind';
 import styles from './Header.module.scss'
 import images from "../../../../assets/images";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faCircleXmark, faMagnifyingGlass, faSpinner} from "@fortawesome/free-solid-svg-icons";
+import {
+    faCircleQuestion,
+    faCircleXmark,
+    faEarthAsia,
+    faEllipsisVertical, faKeyboard,
+    faMagnifyingGlass,
+    faSpinner
+} from "@fortawesome/free-solid-svg-icons";
 import Tippy from "@tippyjs/react/headless";
 import {useEffect, useState} from "react";
 import {Wrapper as WrapperPopper} from "../../../Popper";
 import AccountItem from "../../../AccountItem";
 import Button from "../../../Button";
+import Menu from "../../../Popper/Menu/menu";
 // import 'tippy.js/dist/tippy.css';
 
 let cx = classNames.bind(styles)
@@ -15,6 +23,19 @@ let cx = classNames.bind(styles)
 function Header() {
     const [searchResult, setSearchResult] = useState([]);
 
+    let menuItems = [
+        {icon: <FontAwesomeIcon icon={faEarthAsia} />,
+            title: 'English'
+        },
+        {
+            icon: <FontAwesomeIcon icon={faCircleQuestion}/>,
+            title: 'Feedback and help'
+        },
+        {
+            icon: <FontAwesomeIcon icon={faKeyboard}/>,
+            title: 'Keyboard shortcuts'
+        }
+    ]
 
     return (
         <header className={cx('wrapper')}>
@@ -30,10 +51,10 @@ function Header() {
                         <div className={cx('search-result')} tabIndex="-1" {...attrs}>
                             <WrapperPopper>
                                 <h4 className={cx('search-title')}>Accounts</h4>
-                                <AccountItem />
-                                <AccountItem />
-                                <AccountItem />
-                                <AccountItem />
+                                <AccountItem/>
+                                <AccountItem/>
+                                <AccountItem/>
+                                <AccountItem/>
                             </WrapperPopper>
                         </div>
                     )}>
@@ -48,13 +69,17 @@ function Header() {
                         </button>
                     </div>
                 </Tippy>
+
                 <div className="actions">
-                    <Button primary >
-                        Log in
-                    </Button>   <Button primary >
-                        Log in
-                    </Button>
+                    <Button text>Register</Button>
+                    <Button primary>Log in</Button>
+                    <Menu items={menuItems}>
+                        <button className={cx('more-button')}>
+                            <FontAwesomeIcon icon={faEllipsisVertical}/>
+                        </button>
+                    </Menu>
                 </div>
+
             </div>
         </header>
     )
