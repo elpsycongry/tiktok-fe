@@ -23,12 +23,16 @@ import {Wrapper as WrapperPopper} from "../../../Popper";
 import AccountItem from "../../../AccountItem";
 import Button from "../../../Button";
 import Menu from "../../../Popper/Menu/menu";
+import {UploadIcon} from "../../../icons";
 import 'tippy.js/dist/tippy.css';
+import Upload from "../../../../pages/Upload/upload";
+import Image from "../../../image/image";
+import Search from "../../../Search/search";
 
 let cx = classNames.bind(styles)
 
 function Header() {
-    const [searchResult, setSearchResult] = useState([]);
+
     const currentUser = true;
 
     const MENU_ITEMS = [
@@ -101,39 +105,15 @@ function Header() {
                 <div className={cx('logo')}>
                     <img src={images.logoLink} alt='tiktok logo'/>
                 </div>
-                <TippyHeadless
-                    placement="bottom"
-                    interactive
-                    // visible={searchResult.length === 0}
-                    render={attrs => (
-                        <div className={cx('search-result')} tabIndex="-1" {...attrs}>
-                            <WrapperPopper>
-                                <h4 className={cx('search-title')}>Accounts</h4>
-                                <AccountItem/>
-                                <AccountItem/>
-                                <AccountItem/>
-                                <AccountItem/>
-                            </WrapperPopper>
-                        </div>
-                    )}>
-                    <div className={cx('search')}>
-                        <input placeholder="Search account and videos" spellCheck='true'/>
-                        <button className={cx('clear')}>
-                            <FontAwesomeIcon icon={faCircleXmark}/>
-                        </button>
-                        <FontAwesomeIcon className={cx('loading')} icon={faSpinner}/>
-                        <button className={cx('search-btn')}>
-                            <FontAwesomeIcon icon={faMagnifyingGlass}/>
-                        </button>
-                    </div>
-                </TippyHeadless>
+
+                <Search />
 
                 <div className={cx('actions')}>
                     {currentUser ? (
                         <>
                             <Tippy delay={[0, 200]} content="Upload video" placement="bottom">
                                 <button className={cx('action-btn')}>
-                                    <FontAwesomeIcon icon={faCloudUpload} />
+                                    <UploadIcon />
                                 </button>
                             </Tippy>
                         </>
@@ -146,9 +126,10 @@ function Header() {
 
                     <Menu items={currentUser ? userMenu : MENU_ITEMS} onChange={handleMenuChange}>
                         {currentUser ? (
-                            <img
+                            <Image
                                 className={cx('user-avatar')}
-                                src="https://p16-sign-va.tiktokcdn.com/tos-useast2a-avt-0068-giso/ea0854578085ab26effc2c7b8cefa270~c5_100x100.jpeg?x-expires=1651658400&x-signature=zeUCDyTxctGYZ5%2Bsh422klviXFE%3D"
+                                src="https://ltsenhance.io/static/8f5e523ee6b2479e26ecc91b9c25261e/1015f/MainAfter.jpg"
+                                errorImage="https://buffer.com/library/content/images/size/w1200/2023/10/free-images.jpg"
                                 alt="Nguyen Van A"
                             />
                         ) : (

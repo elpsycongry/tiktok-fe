@@ -1,6 +1,6 @@
 import {BrowserRouter as Router, Routes, Route} from 'react-router-dom'
 import {publicRoutes} from "./routes";
-import { DefaultLayout } from "./component/Layout";
+import {DefaultLayout} from "./component/Layout";
 import {Fragment} from "react";
 
 function App() {
@@ -17,13 +17,15 @@ function App() {
                             } else if (route.layout === null) {
                                 Layout = Fragment
                             }
+
                             return (
                                 <Route
                                     key={index}
                                     path={route.path}
-                                    element={<Layout >
-                                        <Page/>
-                                </Layout>}/>)
+                                    element={
+                                        <Layout>
+                                            <Page/>
+                                        </Layout>}/>)
                         })
                     }
                 </Routes>
