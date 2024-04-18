@@ -1,0 +1,25 @@
+.form {
+  display: flex;
+  flex-flow: column;
+
+  .input-wrap {
+    display: flex;
+    flex-flow: column;
+    padding: 12px;
+
+    .input-label {
+      font-size: 1.8rem;
+    }
+
+    input {
+      font-size: 1.6rem;
+      margin-top: 8px;
+      padding: 12px;
+      background-color: #f1f1f2;
+    }
+
+    .submit-button {
+      //align-self: center;
+    }
+  }
+}

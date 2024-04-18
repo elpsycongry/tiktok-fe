@@ -1,9 +1,5 @@
-import Tippy from "@tippyjs/react";
-import {Wrapper as WrapperPopper} from "../index";
-import AccountItem from "../../AccountItem";
 import classNames from "classnames/bind";
 import styles from "./menu.module.scss"
-import MenuItem from "./MenuItem";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faChevronLeft} from "@fortawesome/free-solid-svg-icons";
 

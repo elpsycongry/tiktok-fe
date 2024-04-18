@@ -43,7 +43,6 @@ function Button({
         props.href = href;
         Comp = 'a';
     }
-
     const classes = cx('wrapper', {
         [className]: className,
         primary,

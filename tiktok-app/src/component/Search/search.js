@@ -38,7 +38,6 @@ function Search() {
         return () => clearTimeout(timeOutId)
     }, [searchValue]);
 
-    console.log(searchResult.length > 0 && showResult)
     return (
         <TippyHeadless
             onHide={(instance) => {

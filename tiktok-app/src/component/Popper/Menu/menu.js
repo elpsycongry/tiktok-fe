@@ -11,10 +11,8 @@ import {useState} from "react";
 const cx = classNames.bind(styles)
 
 function Menu({children, items = []}) {
-
     const [history, setHistory] = useState([{data: items, title: ""}]);
     const currentMenu = history[history.length - 1]
-    console.log(currentMenu)
     const renderItem = () => {
         return currentMenu.data.map((item, index) => {
             const isParent = !!item.children
@@ -22,6 +20,7 @@ function Menu({children, items = []}) {
             return <MenuItem
                 key={index}
                 data={item}
+                action={item.click}
                 onClick={() => {
                     if (isParent) {
                         setHistory((prev) => [...prev, item.children]);
@@ -48,7 +47,7 @@ function Menu({children, items = []}) {
                             {
                                 history.length > 1
                                 &&
-                                <Header onBack={() => {
+                                <Header title={currentMenu.title} onBack={() => {
                                     setHistory((prev) => prev.slice(0, prev.length - 1))
                                 }}/>
                             }

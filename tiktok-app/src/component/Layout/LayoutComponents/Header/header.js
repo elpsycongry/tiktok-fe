@@ -4,37 +4,39 @@ import images from "../../../../assets/images";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {
     faCircleQuestion,
-    faCircleXmark,
-    faCloudUpload,
     faCoins,
     faEarthAsia,
     faEllipsisVertical,
     faGear,
     faKeyboard,
-    faMagnifyingGlass,
     faSignOut,
-    faSpinner,
     faUser,
 } from "@fortawesome/free-solid-svg-icons";
-import TippyHeadless from "@tippyjs/react/headless";
 import Tippy from "@tippyjs/react";
-import {useEffect, useState} from "react";
-import {Wrapper as WrapperPopper} from "../../../Popper";
-import AccountItem from "../../../AccountItem";
 import Button from "../../../Button";
 import Menu from "../../../Popper/Menu/menu";
 import {UploadIcon} from "../../../icons";
 import 'tippy.js/dist/tippy.css';
-import Upload from "../../../../pages/Upload/upload";
 import Image from "../../../image/image";
 import Search from "../../../Search/search";
+import Modal from "../../../Modal/modal";
+import {useState} from "react";
+import LoginForm from "../../../Form/loginForm";
 
 let cx = classNames.bind(styles)
 
 function Header() {
 
-    const currentUser = true;
+    let currentUser = false;
+    const data = window.localStorage.getItem('currentUser');
+    if ( data !== null ) currentUser = JSON.parse(data);
 
+    const doLogout = () => {
+        window.localStorage.removeItem('currentUser');
+    }
+
+    const [loginModal, setLoginModal] = useState(false);
+    const [registerModal, setRegisterModal] = useState(false);
     const MENU_ITEMS = [
         {
             icon: <FontAwesomeIcon icon={faEarthAsia} />,
@@ -86,8 +88,8 @@ function Header() {
         {
             icon: <FontAwesomeIcon icon={faSignOut} />,
             title: 'Log out',
-            to: '/logout',
             separate: true,
+            click: doLogout,
         },
     ];
     // Handle logic
@@ -99,6 +101,7 @@ function Header() {
             default:
         }
     };
+
     return (
         <header className={cx('wrapper')}>
             <div className={cx('inner')}>
@@ -120,7 +123,7 @@ function Header() {
                     ) : (
                         <>
                             <Button text>Upload</Button>
-                            <Button primary>Log in</Button>
+                            <Button primary onClick={() => {setLoginModal(true)}} >Log in</Button>
                         </>
                     )}
 
@@ -139,8 +142,17 @@ function Header() {
                         )}
                     </Menu>
                 </div>
-
             </div>
+            { loginModal &&
+                <Modal title={'Login'} onClose={(e) => { setLoginModal(false)}}>
+                    <LoginForm></LoginForm>
+                </Modal>
+            }
+            { registerModal &&
+                <Modal title={'Login'} onClose={(e) => { setLoginModal(false)}}>
+                    <LoginForm></LoginForm>
+                </Modal>
+            }
         </header>
     )
 }
