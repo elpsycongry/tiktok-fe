@@ -3,8 +3,8 @@ import Following from "../pages/Following";
 import Profile from "../pages/Profile";
 import Upload from "../pages/Upload/upload";
 import Search from "../pages/Search";
-import Login from "../pages/Login/login";
-import {DefaultLayout, HeaderOnly, NoHeader} from "../component/Layout";
+import {HeaderOnly} from "../component/Layout";
+
 const publicRoutes = [
     {path: '/home', component: Home},
     {path: '/following', component: Following},
