@@ -1,16 +1,18 @@
 import loginImg from "../../assets/images/login_placeholder.jpg"
 import {useEffect, useState} from "react";
 import axios from "axios";
+import userService from "../../service/userService";
 
 function Login() {
     const [user, setUser] = useState(
         {
-            email: "vuthanhtungtd5@gmail.com",
+            email: "vuthanhtungtd2@gmail.com",
             password: "Vuthanhtungtd2",
         })
     const login = () => {
-        axios.post("http://localhost:8080/api/v1/auth/login", user)
-            .then(res => console.log(res));
+        // axios.post("http://localhost:8080/api/v1/auth/login", user)
+        //     .then(res => console.log(res));
+        userService.getAll(user)
     }
     return (
         <section className="bg-gray-50 dark:bg-gray-900">

@@ -1,18 +1,16 @@
 import "./App.scss"
 import {Route, Routes} from "react-router-dom";
 import {AuthProvider} from "./context/AuthContext";
-import {HomePage} from "./context/homePage";
-import {LoginPage} from "./context/LoginPage";
 import {ProtectedRoute} from "./context/protectRouter";
 import {Secret} from "./context/Secret";
+import Login from "./pages/Login/login";
 
 function App() {
 
     return (
         <AuthProvider>
             <Routes>
-                <Route path="/" element={<HomePage />} />
-                <Route path="/login" element={<LoginPage />} />
+                <Route path="/login" element={<Login />} />
                 <Route
                     path="/secret"
                     element={
